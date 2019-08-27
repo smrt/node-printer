@@ -505,7 +505,7 @@ MY_NODE_MODULE_CALLBACK(getPrinter)
 {
     MY_NODE_MODULE_HANDLESCOPE;
     REQUIRE_ARGUMENTS(iArgs, 1);
-    REQUIRE_ARGUMENT_STRINGV8(iArgs, 0, printername);
+    REQUIRE_ARGUMENT_STRINGW(iArgs, 0, printername);
 
     // Open a handle to the printer.
     PrinterHandle printerHandle((LPWSTR)(*printername));
@@ -549,7 +549,7 @@ MY_NODE_MODULE_CALLBACK(getJob, context)
 {
     MY_NODE_MODULE_HANDLESCOPE;
     REQUIRE_ARGUMENTS(iArgs, 2);
-    REQUIRE_ARGUMENT_STRINGV8(iArgs, 0, printername);
+    REQUIRE_ARGUMENT_STRINGW(iArgs, 0, printername);
 
     REQUIRE_ARGUMENT_INTEGER(iArgs, 1, jobId);
     if(jobId < 0)
@@ -587,7 +587,7 @@ MY_NODE_MODULE_CALLBACK(setJob, context)
 {
     MY_NODE_MODULE_HANDLESCOPE;
     REQUIRE_ARGUMENTS(iArgs, 3);
-    REQUIRE_ARGUMENT_STRINGV8(iArgs, 0, printername);
+    REQUIRE_ARGUMENT_STRINGW(iArgs, 0, printername);
     REQUIRE_ARGUMENT_INTEGER(iArgs, 1, jobId);
     REQUIRE_ARGUMENT_STRING(iArgs, 2, jobCommandV8);
     if(jobId < 0)
@@ -692,9 +692,9 @@ MY_NODE_MODULE_CALLBACK(PrintDirect, context)
         RETURN_EXCEPTION_STR("Argument 0 must be a string or Buffer");
     }
     
-        REQUIRE_ARGUMENT_STRINGV8(iArgs, 1, printername);
-        REQUIRE_ARGUMENT_STRINGV8(iArgs, 2, docname);
-        REQUIRE_ARGUMENT_STRINGV8(iArgs, 3, type);
+        REQUIRE_ARGUMENT_STRINGW(iArgs, 1, printername);
+        REQUIRE_ARGUMENT_STRINGW(iArgs, 2, docname);
+        REQUIRE_ARGUMENT_STRINGW(iArgs, 3, type);
     
     BOOL     bStatus = true;
     // Open a handle to the printer.
